@@ -28,16 +28,13 @@
 
         <md-list>
           <md-list-item ng-repeat="track in favorites" ng-click="null">
-              <!-- <md-button ng-click="ul.selectUser(u)" ng-class="{'selected' : u === ul.selected }"> -->
-                <div layout="row" layout-align="start center" layout-margin>
-                  <div layout="column" layout-align="center">
-                    <img ng-if="track.artwork_url" ng-src="{{track.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
-                    <img ng-if="!track.artwork_url" src="../assets/music_record.png" alt="Avatar image" class="img-circle artwork-img"/>
-                  </div>
-                  <!-- <md-icon md-svg-icon="{{track.artwork_url}}" class="avatar"></md-icon> -->
-                  <div layout="column" layout-align="center">{{track.title | TitleFilter}}</div>
-                </div>
-              <!-- </md-button> -->
+            <div layout="row" layout-align="start center" layout-margin>
+              <div layout="column" layout-align="center">
+                <img ng-if="track.artwork_url" ng-src="{{track.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
+                <img ng-if="!track.artwork_url" src="../assets/music_record.png" alt="Avatar image" class="img-circle artwork-img"/>
+              </div>
+              <div layout="column" layout-align="center">{{track.title | TitleFilter}}</div>
+            </div>
           </md-list-item>
         </md-list>
       </md-sidenav>
