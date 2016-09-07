@@ -1,12 +1,11 @@
 'use strict'
 
-angular.module('SoundCloudApp').controller('MainController', function($scope, SoundService, $location){
+angular.module('SoundCloudApp').controller('LoginController', function($scope, LoginService, $location){
   $scope.naslov = "SoundCloud";
 
   $scope.connect = function(){
-    var userLog = SoundService.connect().promise;
+    var userLog = LoginService.connect().promise;
     userLog.then(function(response){
-      console.log(response);
       $location.path('/' + response.first_name + '/dashboard');
     })
   }

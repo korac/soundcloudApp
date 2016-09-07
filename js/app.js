@@ -5,7 +5,7 @@ var app = angular.module('SoundCloudApp', ['ngMaterial', 'ngRoute']);
 app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider){
   $routeProvider
     .when('/login', {
-      controller: 'MainController',
+      controller: 'LoginController',
       templateUrl: './js/templates/login.html'
     })
     .when('/:name/dashboard', {
