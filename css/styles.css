@@ -1,10 +1,14 @@
-body{
-  background-color: #f5f5f5;
+html, body{
+  height: 100%;
 }
 
 .background{
   width: 100%;
   height: 100%;
+}
+
+.background-grey{
+  background-color: #f5f5f5;
 }
 
 .img-circle{
@@ -20,6 +24,24 @@ body{
   margin-right: 0;
 }
 
-.artwork-img{
+.artwork-list-img{
   width: 75px;
+}
+
+.selected{
+  color: rgb(255,87,34);
+}
+
+.artwork-img{
+  width: 100px;
+}
+
+#content{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+}
+
+.subtitle{
+  color: gray;
 }

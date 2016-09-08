@@ -21,6 +21,13 @@ app.config(['$mdThemingProvider', function($mdThemingProvider){
     .accentPalette('teal')
 }])
 
+window.onload = function(){
+  SC.initialize({
+    client_id: '1d976cc7e224840e96d9a00a5bd2cb9d',
+    redirect_uri: 'http://localhost:8080/callback.html'
+  });
+}
+
 // app.controller("SoundController", function($scope){
 //   $scope.naslov = "Amo u soundcloud";
 //
