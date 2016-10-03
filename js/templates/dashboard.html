@@ -1,8 +1,8 @@
 <md-toolbar class="sc-gradient">
   <div class="md-toolbar-tools" layout="row" layout-align="space-between stretch">
     <div flex="15" layout="row" layout-align="start center" layout-margin class="topbar-avatar">
-      <img ng-src="{{user.avatar_url}}" alt="Avatar image" class="img-circle avatar-img"/>
-      <h3 class="avatar_name">{{user.full_name}}</h3>
+      <img ng-src="{{vm.user.avatar_url}}" alt="Avatar image" class="img-circle avatar-img"/>
+      <h3 class="avatar_name">{{vm.user.full_name}}</h3>
     </div>
      <!-- <span flex></span> -->
      <h2 layout layout-align="center center">
@@ -10,7 +10,7 @@
        <span>&nbsp; SoundClouder</span>
      </h2>
      <!-- <span flex></span> -->
-     <md-button ng-click="logout()" layout layout-align="center center">
+     <md-button ng-click="vm.logout()" layout layout-align="center center">
        <span>Logout</span>
        <i class="material-icons">power_settings_new</i>
      </md-button>
@@ -25,8 +25,8 @@
       class="md-whiteframe-4dp" >
 
         <md-list>
-          <md-list-item ng-repeat="track in favorites" ng-click="selectTrack(track)">
-            <div layout="row" layout-align="start center" layout-margin ng-class="{'selected' : track === selectedTrack }">
+          <md-list-item ng-repeat="track in vm.favorites" ng-click="vm.selectTrack(track)">
+            <div layout="row" layout-align="start center" layout-margin ng-class="{'selected' : track === vm.selectedTrack }">
               <div layout="column" layout-align="center">
                 <img ng-if="track.artwork_url" ng-src="{{track.artwork_url}}" alt="Avatar image" class="img-circle artwork-list-img"/>
                 <img ng-if="!track.artwork_url" src="../assets/music_record.png" alt="Avatar image" class="img-circle artwork-list-img"/>
@@ -38,13 +38,12 @@
     </md-sidenav>
 
     <md-content flex id="content" ng-cloak>
-      <img ng-if="selectedTrack.artwork_url" ng-src="{{selectedTrack.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
+      <img ng-if="vm.selectedTrack.artwork_url" ng-src="{{vm.selectedTrack.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
       <!-- <img ng-if="!selectedTrack.artwork_url" src="../assets/music_record.png" alt="Avatar image" class="img-circle artwork-img"/> -->
-      <h2>{{selectedTrack.title}}</h2>
-      <h4 class="subtitle">Times played: {{selectedTrack.playback_count}}</h4>
-      <md-button class="md-primary" aria-label="Share with" md-no-ink ng-click="play()">
-        Play
-      </md-button>
+      <h2>{{vm.selectedTrack.title}}</h2>
+      <h4 class="subtitle">Times played: {{vm.selectedTrack.playback_count}}</h4>
+      <md-button class="md-primary" aria-label="Play sound" ng-click="vm.playSound()">Play</md-button>
+      <md-button class="md-primary" aria-label="Stop sound" ng-click="vm.pauseSound()">Pause</md-button>
       <div id="playme">
 
       </div>

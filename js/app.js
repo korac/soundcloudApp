@@ -9,12 +9,14 @@
   app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider){
     $routeProvider
         .when('/login', {
+          templateUrl: './js/templates/login.html',
           controller: 'LoginController',
-          templateUrl: './js/templates/login.html'
+          controllerAs: 'vm'
         })
         .when('/:name/dashboard', {
-          controller: 'DashboardController',
           templateUrl: './js/templates/dashboard.html',
+          controller: 'DashboardController',
+          controllerAs: 'vm',
           resolve: {
             access: function($location, $window){
               if(!$window.SC.isConnected()){
