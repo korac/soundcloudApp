@@ -7,7 +7,7 @@ angular.module('SoundCloudApp').controller('DashboardController', function($scop
   $scope.selectedTrack;
   $scope.sound;
 
-  if($window.SC.isConnected()){
+  // if($window.SC.isConnected()){
     SoundService.getUser().promise.then(response => {
       $scope.user = {
         id: response.id,
@@ -21,9 +21,9 @@ angular.module('SoundCloudApp').controller('DashboardController', function($scop
       $scope.favorites = response;
       $scope.selectedTrack = $scope.favorites[0];
     })
-  }else{
-    $location.path("/login");
-  }
+  // }else{
+  //   $location.path("/login");
+  // }
 
   $scope.logout = function(){
     $location.path('/login');

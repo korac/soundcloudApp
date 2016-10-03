@@ -11,6 +11,10 @@ html, body{
   background-color: #f5f5f5;
 }
 
+.sc-gradient{
+  background: linear-gradient(#ff7500, #ff3400);
+}
+
 .img-circle{
   border-radius: 50%;
 }

@@ -10,7 +10,14 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
     })
     .when('/:name/dashboard', {
       controller: 'DashboardController',
-      templateUrl: './js/templates/dashboard.html'
+      templateUrl: './js/templates/dashboard.html',
+      resolve: {
+        access: function($location, $window){
+          if(!$window.SC.isConnected()){
+            $location.path('/login');
+          }
+        }
+      }
     })
     .otherwise({ redirectTo: '/login'})
 }]);
