@@ -28,6 +28,19 @@ html, body{
   margin-right: 0;
 }
 
+#selectedTrackTitle{
+  margin-left: 20px;
+}
+
+#selectedTrackTitle h2{
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+#selectedTrackTitle h4{
+  margin: 0;
+}
+
 .artwork-list-img{
   width: 75px;
 }

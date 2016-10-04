@@ -17,13 +17,7 @@
           templateUrl: './js/templates/dashboard.html',
           controller: 'DashboardController',
           controllerAs: 'vm',
-          resolve: {
-            access: function($location, $window){
-              if(!$window.SC.isConnected()){
-                $location.path('/login');
-              }
-            }
-          }
+          resolve: { access: access }
         })
         .otherwise({ redirectTo: '/login'})
       }]);
@@ -35,6 +29,12 @@
     }]);
 
   window.onload = initializeSC();
+
+  function access($location, $window){
+    if(!$window.SC.isConnected()){
+      $location.path('/login');
+    }
+  }
 
   function initializeSC(){
     SC.initialize({

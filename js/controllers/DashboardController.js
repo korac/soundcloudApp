@@ -13,21 +13,19 @@
     vm.favorites = [];
     vm.first_name = $routeParams.name;
     vm.logout = logout;
+    vm.pauseSound = pauseSound;
     vm.playSound = playSound;
     vm.selectedTrack;
-    vm.pauseSound = pauseSound;
     vm.selectTrack = selectTrack;
     vm.sound;
     vm.user = {};
     vm.volumeDown = volumeDown;
     vm.volumeUp = volumeUp;
 
-    // vm.playres = function(){
-    //   vm.sound.play-resume();
-    // }
-    //
-    // vm.reset = function(){
-    //   console.log(vm.sound.currentTime());
+    // vm.seek = function(){
+    //   console.log(vm.sound.currentTime())
+    //   var time = prompt("daj vrime u milisekundama");
+    //   vm.sound.seek(time);
     // }
 
     initUser();
@@ -36,8 +34,7 @@
     function initFavorites(){
       SoundService.getFavorites().promise.then(response  => {
         vm.favorites = response;
-        vm.selectedTrack = vm.favorites[0];
-        streamSound(vm.selectedTrack.id);
+        selectTrack(vm.favorites[0]);
       })
     }
 
