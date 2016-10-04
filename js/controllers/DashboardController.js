@@ -79,14 +79,18 @@
 
     function volumeDown(){
       var volume = vm.sound.getVolume();
-      volume--;
-      vm.sound.setVolume(volume);
+      if(volume > 0){
+        volume -= 0.05;
+        vm.sound.setVolume(volume);
+      }
     }
 
     function volumeUp(){
       var volume = vm.sound.getVolume();
-      volume++;
-      vm.sound.setVolume(volume);
+      if(volume < 1){
+        volume += 0.05;
+        vm.sound.setVolume(volume);
+      }
     }
 
   }
