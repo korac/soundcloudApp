@@ -19,6 +19,16 @@
     vm.selectTrack = selectTrack;
     vm.sound;
     vm.user = {};
+    vm.volumeDown = volumeDown;
+    vm.volumeUp = volumeUp;
+
+    // vm.playres = function(){
+    //   vm.sound.play-resume();
+    // }
+    //
+    // vm.reset = function(){
+    //   console.log(vm.sound.currentTime());
+    // }
 
     initUser();
     initFavorites();
@@ -48,6 +58,7 @@
 
     function pauseSound(){
       vm.sound.pause();
+      console.log(vm.sound);
     }
 
     function playSound(){
@@ -64,6 +75,18 @@
       $window.SC.stream("/tracks/" + track_id).then(function(sound){
         vm.sound = sound;
       })
+    }
+
+    function volumeDown(){
+      var volume = vm.sound.getVolume();
+      volume--;
+      vm.sound.setVolume(volume);
+    }
+
+    function volumeUp(){
+      var volume = vm.sound.getVolume();
+      volume++;
+      vm.sound.setVolume(volume);
     }
 
   }
