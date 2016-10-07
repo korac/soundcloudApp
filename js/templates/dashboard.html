@@ -39,23 +39,34 @@
 
     <md-content flex id="content" ng-cloak>
       <div layout="column">
-        <div layout="row" layout-align="start center">
-          <img ng-if="vm.selectedTrack.artwork_url" ng-src="{{vm.selectedTrack.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
-          <div id="selectedTrackTitle" layout="column" layout-align="center start">
-            <h2>{{vm.selectedTrack.title}}</h2>
-            <h4 class="subtitle">Times played: {{vm.selectedTrack.playback_count | number}}</h4>
-          </div>
-        </div>
-        <div layout="row">
-          <md-button layout="row" layout-align="space-around center" class="md-primary" aria-label="Play sound" ng-click="vm.playSound()"><i class="material-icons">play_arrow</i>Play</md-button>
-          <md-button layout="row" layout-align="space-around center" class="md-primary" aria-label="Stop sound" ng-click="vm.pauseSound()"><i class="material-icons">pause</i>Pause</md-button>
-          <md-button class="md-primary" aria-label="Volume up" ng-click="vm.volumeUp()">Volume +</md-button>
-          <md-button class="md-primary" aria-label="Volume down" ng-click="vm.volumeDown()">Volume -</md-button>
-          <!-- <md-button class="md-primary" aria-label="Volume down" ng-click="vm.seek()">Seek</md-button> -->
-        </div>
-        <div id="playme">
-
-        </div>
+        <md-card>
+          <md-card-content>
+            <div layout="row" layout-align="start center">
+              <img ng-if="vm.selectedTrack.artwork_url" ng-src="{{vm.selectedTrack.artwork_url}}" alt="Avatar image" class="img-circle artwork-img"/>
+              <div id="selectedTrackTitle" layout="column" layout-align="center start">
+                <h2>{{vm.selectedTrack.title}}</h2>
+                <h4 class="subtitle">Times played: {{vm.selectedTrack.playback_count | number}}</h4>
+              </div>
+            </div>
+          </md-card-content>
+          <md-card-actions layout="row">
+              <md-button layout="row" layout-align="space-around center" class="md-primary" aria-label="Stream sound" ng-click="vm.streamSound(vm.selectedTrack)">Stream</md-button>
+          </md-card-actions>
+        </md-card>
+        <md-card>
+          <md-card-content>
+            <div id="playme">
+              <h2>Playing track: {{vm.playingTrack.title}}</h2>
+              <div layout="row">
+                <md-button layout="row" layout-align="space-around center" class="md-primary" aria-label="Play sound" ng-click="vm.playSound()"><i class="material-icons">play_arrow</i>Play</md-button>
+                <md-button layout="row" layout-align="space-around center" class="md-primary" aria-label="Stop sound" ng-click="vm.pauseSound()"><i class="material-icons">pause</i>Pause</md-button>
+                <md-button class="md-primary" aria-label="Volume up" ng-click="vm.volumeUp()">Volume +</md-button>
+                <md-button class="md-primary" aria-label="Volume down" ng-click="vm.volumeDown()">Volume -</md-button>
+                <!-- <md-button class="md-primary" aria-label="Volume down" ng-click="vm.seek()">Seek</md-button> -->
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
       </div>
     </md-content>
 </div>
