@@ -10,8 +10,8 @@
   function LoginController($scope, LoginService, $location){
     var vm = this;
 
-    vm.connect = connect;
-    vm.naslov = "SoundCloud";
+    vm.connect  = connect;
+    vm.naslov   = "SoundCloud";
 
     function connect(){
       var userLog = LoginService.connect().promise;

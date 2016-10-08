@@ -10,17 +10,17 @@
   function DashboardController($scope, $routeParams, LoginService, $location, $window, SoundService, $q, $mdSidenav, $document){
     var vm = this;
 
-    vm.favorites = [];
-    vm.first_name = $routeParams.name;
-    vm.logout = logout;
-    vm.pauseSound = pauseSound;
-    vm.playSound = playSound;
+    vm.favorites      = [];
+    vm.first_name     = $routeParams.name;
+    vm.logout         = logout;
+    vm.pauseSound     = pauseSound;
+    vm.playSound      = playSound;
     vm.selectedTrack;
-    vm.selectTrack = selectTrack;
+    vm.selectTrack    = selectTrack;
     vm.sound;
-    vm.user = {};
-    vm.volumeDown = volumeDown;
-    vm.volumeUp = volumeUp;
+    vm.user           = {};
+    vm.volumeDown     = volumeDown;
+    vm.volumeUp       = volumeUp;
 
     // vm.seek = function(){
     //   console.log(vm.sound.currentTime())
