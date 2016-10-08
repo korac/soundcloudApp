@@ -24,6 +24,9 @@
       md-is-locked-open="$mdMedia('gt-sm')"
       class="md-whiteframe-4dp" >
 
+        <md-toolbar>
+          <h1 class="md-toolbar-tools">Liked Tracks</h1>
+        </md-toolbar>
         <md-list>
           <md-list-item ng-repeat="track in vm.favorites" ng-click="vm.selectTrack(track)">
             <div layout="row" layout-align="start center" layout-margin ng-class="{'selected' : track === vm.selectedTrack }">
