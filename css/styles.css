@@ -1,5 +1,10 @@
-html, body{
+html, body, #dashboard{
   height: 100%;
+}
+
+.scroller {
+    overflow-y: hidden;
+    position: relative;
 }
 
 .background{

@@ -3,7 +3,8 @@
 
   var app = angular.module('SoundCloudApp', [
     'ngMaterial',
-    'ngRoute'
+    'ngRoute',
+    'perfect_scrollbar'
   ]);
 
   app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider){
