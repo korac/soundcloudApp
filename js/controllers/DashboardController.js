@@ -12,8 +12,10 @@
 
     vm.favorites      = [];
     vm.first_name     = $routeParams.name;
+    vm.isPlaying      = false;
     vm.logout         = logout;
     vm.pauseSound     = pauseSound;
+    vm.playingTrack   = {};
     vm.playSound      = playSound;
     vm.selectedTrack;
     vm.selectTrack    = selectTrack;
@@ -59,11 +61,13 @@
     function pauseSound(){
       console.log(vm.sound);
       vm.sound.pause();
+      vm.isPlaying = false;
     }
 
     function playSound(){
       // vm.playingTrack = track;
       vm.sound.play();
+      vm.isPlaying = true;
     }
 
     function selectTrack(track){
@@ -75,6 +79,8 @@
       vm.playingTrack = track;
       $window.SC.stream("/tracks/" + track.id).then(sound => {
         vm.sound = sound;
+        vm.isPlaying = false;
+        $scope.$apply();
         console.log("streamed!");
       })
     }
