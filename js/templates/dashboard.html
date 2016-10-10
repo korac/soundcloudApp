@@ -47,7 +47,7 @@
         <div layout="column">
           <md-card flex>
             <md-card-content>
-              <div id="playme">
+              <div id="playme" layout="column">
                 <h2>Playing track: {{vm.playingTrack.title}}</h2>
                 <div layout="row">
                   <md-button ng-if="!vm.isPlaying" layout="row" layout-align="space-around center" class="md-primary" aria-label="Play sound" ng-click="vm.playSound()"><i class="material-icons">play_arrow</i>Play</md-button>
@@ -55,6 +55,9 @@
                   <md-button class="md-accent" aria-label="Volume up" ng-click="vm.volumeUp()">Volume +</md-button>
                   <md-button class="md-primary" aria-label="Volume down" ng-click="vm.volumeDown()">Volume -</md-button>
                   <!-- <md-button class="md-primary" aria-label="Volume down" ng-click="vm.seek()">Seek</md-button> -->
+                </div>
+                <div style="text-align: center;">
+                  <i class="material-icons" style="font-size: 420px; opacity: 0.2;">equalizer</i>
                 </div>
               </div>
             </md-card-content>
