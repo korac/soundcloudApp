@@ -17,6 +17,7 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-material": "^1.0.9",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "angular-perfect-scrollbar": "^0.0.4"
   }
 }

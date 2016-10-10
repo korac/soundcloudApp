@@ -12,8 +12,10 @@
 
     vm.favorites      = [];
     vm.first_name     = $routeParams.name;
+    vm.isPlaying      = false;
     vm.logout         = logout;
     vm.pauseSound     = pauseSound;
+    vm.playingTrack   = {};
     vm.playSound      = playSound;
     vm.selectedTrack;
     vm.selectTrack    = selectTrack;
@@ -21,6 +23,8 @@
     vm.user           = {};
     vm.volumeDown     = volumeDown;
     vm.volumeUp       = volumeUp;
+
+    vm.streamSound = streamSound;
 
     // vm.seek = function(){
     //   console.log(vm.sound.currentTime())
@@ -35,6 +39,7 @@
       SoundService.getFavorites().promise.then(response  => {
         vm.favorites = response;
         selectTrack(vm.favorites[0]);
+        streamSound(vm.favorites[0]);
       })
     }
 
@@ -54,23 +59,29 @@
     }
 
     function pauseSound(){
-      vm.sound.pause();
       console.log(vm.sound);
+      vm.sound.pause();
+      vm.isPlaying = false;
     }
 
     function playSound(){
+      // vm.playingTrack = track;
       vm.sound.play();
+      vm.isPlaying = true;
     }
 
     function selectTrack(track){
-      console.log(track);
       vm.selectedTrack = track;
-      streamSound(track.id);
+      // streamSound(track.id);
     }
 
-    function streamSound(track_id){
-      $window.SC.stream("/tracks/" + track_id).then(function(sound){
+    function streamSound(track){
+      vm.playingTrack = track;
+      $window.SC.stream("/tracks/" + track.id).then(sound => {
         vm.sound = sound;
+        vm.isPlaying = false;
+        $scope.$apply();
+        console.log("streamed!");
       })
     }
 
