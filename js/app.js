@@ -26,7 +26,7 @@
   app.config(['$mdThemingProvider', function($mdThemingProvider){
     $mdThemingProvider.theme('default')
       .primaryPalette('deep-orange')
-      .accentPalette('teal')
+      .accentPalette('indigo')
     }]);
 
   window.onload = initializeSC();

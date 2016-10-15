@@ -28,6 +28,7 @@
           <md-toolbar>
             <h1 class="md-toolbar-tools"><i class="material-icons">favorite</i>&nbsp;Tracks</h1>
           </md-toolbar>
+          <md-progress-linear class="md-accent" md-mode="indeterminate" ng-if="vm.favorites.length == 0"></md-progress-linear>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
             <md-list>
               <md-list-item ng-repeat="track in vm.favorites" ng-click="vm.selectTrack(track)">
