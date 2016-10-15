@@ -25,8 +25,10 @@
         md-is-locked-open="$mdMedia('gt-sm')"
         class="md-whiteframe-4dp" >
 
-          <md-toolbar>
-            <h1 class="md-toolbar-tools"><i class="material-icons">favorite</i>&nbsp;Tracks</h1>
+          <md-toolbar layout="row">
+            <span flex></span>
+            <h1 flex class="md-toolbar-tools"><i class="material-icons">favorite</i>&nbsp;Tracks</h1>
+            <span flex></span>
           </md-toolbar>
           <md-progress-linear class="md-accent" md-mode="indeterminate" ng-if="vm.favorites.length == 0"></md-progress-linear>
           <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="10" min-scrollbar-length="20">
@@ -66,8 +68,8 @@
           <md-card>
             <md-card-content>
               <div id="selectedTrackContent" layout="row" layout-align="start center">
-                <i ng-if="!vm.isPlaying" class="material-icons" ng-click="vm.streamSound(vm.selectedTrack);">play_circle_outline</i>
-                <i ng-if="vm.isPlaying" class="material-icons" ng-click="vm.pauseSound()">pause_circle_outline</i>
+                <i ng-if="!vm.isPlaying || vm.playingTrack.id != vm.selectedTrack.id" class="material-icons" ng-click="vm.streamOrPlay(vm.selectedTrack);">play_circle_outline</i>
+                <i ng-if="vm.isPlaying && vm.playingTrack.id == vm.selectedTrack.id" class="material-icons" ng-click="vm.pauseSound()">pause_circle_outline</i>
                 <div id="selectedTrackTitle" layout="column" layout-align="center end" flex>
                   <h2>{{vm.selectedTrack.title}}</h2>
                   <h4 class="subtitle">Times played: {{vm.selectedTrack.playback_count | number}}</h4>

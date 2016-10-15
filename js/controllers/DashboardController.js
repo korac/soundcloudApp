@@ -14,6 +14,7 @@
     vm.first_name     = $routeParams.name;
     vm.isPlaying      = false;
     vm.logout         = logout;
+    vm.streamOrPlay   = streamOrPlay;
     vm.pauseSound     = pauseSound;
     vm.playingTrack   = {};
     vm.playSound      = playSound;
@@ -24,7 +25,6 @@
     vm.volumeDown     = volumeDown;
     vm.volumeUp       = volumeUp;
 
-    vm.streamSound = streamSound;
 
     // vm.seek = function(){
     //   console.log(vm.sound.currentTime())
@@ -39,7 +39,6 @@
       SoundService.getFavorites().promise.then(response  => {
         vm.favorites = response;
         selectTrack(vm.favorites[0]);
-        streamSound(vm.favorites[0]);
       })
     }
 
@@ -59,29 +58,35 @@
     }
 
     function pauseSound(){
-      console.log(vm.sound);
       vm.sound.pause();
       vm.isPlaying = false;
     }
 
+    function streamOrPlay(track){
+      if(track.id == vm.playingTrack.id){
+        playSound();
+      }else{
+        if(vm.isPlaying)
+          pauseSound();
+        streamSound(track)
+      }
+    }
+
     function playSound(){
-      // vm.playingTrack = track;
       vm.sound.play();
       vm.isPlaying = true;
     }
 
     function selectTrack(track){
       vm.selectedTrack = track;
-      // streamSound(track.id);
     }
 
     function streamSound(track){
       vm.playingTrack = track;
       $window.SC.stream("/tracks/" + track.id).then(sound => {
         vm.sound = sound;
-        vm.isPlaying = false;
+        playSound();
         $scope.$apply();
-        console.log("streamed!");
       })
     }
 
