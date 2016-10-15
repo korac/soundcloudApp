@@ -75,6 +75,7 @@
                   <h4 class="subtitle">Times played: {{vm.selectedTrack.playback_count | number}}</h4>
                 </div>
                 <img ng-if="vm.selectedTrack.artwork_url" ng-src="{{vm.selectedTrack.artwork_url}}" alt="Avatar image" class="img-circle artwork-img-small"/>
+                <img ng-if="!vm.selectedTrack.artwork_url" src="../assets/music_record.png" alt="Avatar image" class="img-circle artwork-img-small"/>
               </div>
             </md-card-content>
           </md-card>
