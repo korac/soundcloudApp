@@ -73,7 +73,7 @@
     }
 
     function playSound(){
-      vm.sound.play();
+      // vm.sound.play();
       vm.isPlaying = true;
     }
 
