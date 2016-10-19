@@ -10,7 +10,10 @@
       restrict: 'EA',
       templateUrl: './js/directives/d3Equalizer.directive.html',
       scope: {
-        track: "="
+        track     : "=",
+        pause     : "=",
+        play      : "=",
+        isPlaying : "="
       },
       link: link
     };
@@ -18,51 +21,62 @@
     return directive;
 
     function link(scope, element, attrs){
-      //
-      var stream_url = scope.track,
+      scope.play  = playAudio;
+      scope.pause = pauseAudio;
+
+      var stream_url   = scope.track,
           audioContext = new AudioContext(),
-          audioElem = new Audio(),
-          analyzer = audioContext.createAnalyser(),
-          audioSrc = audioContext.createMediaElementSource(audioElem),
-          freq = new Uint8Array(100),
-          client_id = '?client_id=1d976cc7e224840e96d9a00a5bd2cb9d';
+          audioElem    = new Audio(),
+          analyzer     = audioContext.createAnalyser(),
+          audioSrc     = audioContext.createMediaElementSource(audioElem),
+          freq         = new Uint8Array(100),
+          client_id    = '?client_id=1d976cc7e224840e96d9a00a5bd2cb9d';
+
 
       var requestAnimationFrame = window.requestAnimationFrame ||
                                   window.mozRequestAnimationFrame ||
                                   window.webkitRequestAnimationFrame ||
                                   window.msRequestAnimationFrame;
 
-      // audioElem.volume = 0;
       audioElem.crossOrigin = "anonymous";
 
       audioSrc.connect(analyzer);
       analyzer.connect(audioContext.destination);
 
-      function renderNewEqualizer(){
-        audioElem.src = stream_url + client_id;
+      scope.$watch('track', function(newTrack, oldTrack){
+        stream_url = newTrack;
+        renderNewEqualizer();
+      })
+
+      function playAudio(){
         audioElem.play();
-        console.log(audioElem.src);
-        console.log(audioElem);
-        getAudioData();
+        scope.isPlaying = true;
+      }
+
+      function pauseAudio(){
+        audioElem.pause();
+        scope.isPlaying = false;
+      }
+
+      function renderNewEqualizer(){
+        if(stream_url){
+          audioElem.src = stream_url + client_id;
+          playAudio();
+
+          getAudioData();
+        }
       }
 
       function getAudioData(){
         requestAnimationFrame(getAudioData);
-
         analyzer.getByteFrequencyData(freq)
-        console.log(freq[0]);
+
         svg.selectAll('rect')
           .data(freq)
           .attr('y', d => (height - d))
           .attr('height', d => scaleY(d))
           .attr('fill', (d,i) => colorScale(d))
-
       }
-
-      scope.$watch('track', function(newTrack, oldTrack){
-        stream_url = newTrack;
-        renderNewEqualizer();
-      })
 
       var height = 350;
 	    var width = 1100;
@@ -78,7 +92,7 @@
 
       var colorScale = d3.scaleLinear()
                          .domain([50, 255])
-                         .range(["#01579b", "#FF3030"])
+                         .range(["#536dfe", "#ff3400"])
 
       svg.selectAll('rect')
         .data(freq)
